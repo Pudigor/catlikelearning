@@ -13,15 +13,23 @@ public class Graph : MonoBehaviour
 
     void Awake()
     {
+
+        float step = 2f / resolution;
         Vector3 position = Vector3.zero;
-		Vector3 scale = Vector3.one / 5f;
+		Vector3 scale = Vector3.one * step;
+        
+
 		for (int i = 0; i < resolution; i++) {
+
 			Transform point = Instantiate(pointPrefab);
 
-			position.x = (i + 0.5f) / 5f - 1f;
+			position.x = (i + 0.5f) * step - 1f;
             position.y = Quadratic(position.x);
 			point.localPosition = position;
 			point.localScale = scale;
+
+            point.SetParent(transform);
+
 		}
     }
 
