@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Graph.Code;
+using Static;
 
 namespace Graph
 {
@@ -31,7 +31,7 @@ namespace Graph
                 point.localPosition = position;
                 point.localScale = scale;
 
-                point.SetParent(transform);
+                point.SetParent(transform, false);
 
             }
         }

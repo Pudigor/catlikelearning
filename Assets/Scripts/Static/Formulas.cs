@@ -1,4 +1,4 @@
-namespace Graph.Code
+namespace Static
 {
 
     static class Formulas
