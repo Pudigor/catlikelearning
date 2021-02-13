@@ -1,55 +1,53 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Graph.Code;
 
-public class Graph : MonoBehaviour
+namespace Graph
 {
-
-    [SerializeField]
-    Transform pointPrefab = default;
-
-    [SerializeField, Range(10,100)]
-    int resolution = 10;
-
-    void Awake()
+    public class Graph : MonoBehaviour
     {
 
-        float step = 2f / resolution;
-        Vector3 position = Vector3.zero;
-		Vector3 scale = Vector3.one * step;
-        
+        [SerializeField]
+        Transform pointPrefab = default;
 
-		for (int i = 0; i < resolution; i++) {
+        [SerializeField, Range(10,100)]
+        int resolution = 10;
 
-			Transform point = Instantiate(pointPrefab);
+        void Awake()
+        {
 
-			position.x = (i + 0.5f) * step - 1f;
-            position.y = Quadratic(position.x);
-			point.localPosition = position;
-			point.localScale = scale;
+            float step = 2f / resolution;
+            Vector3 position = Vector3.zero;
+            Vector3 scale = Vector3.one * step;
+            
 
-            point.SetParent(transform);
+            for (int i = 0; i < resolution; i++) {
 
-		}
+                Transform point = Instantiate(pointPrefab);
+
+                position.x = (i + 0.5f) * step - 1f;
+                position.y = Formulas.Quadratic(position.x);
+                point.localPosition = position;
+                point.localScale = scale;
+
+                point.SetParent(transform);
+
+            }
+        }
+
+        // Start is called before the first frame update
+        void Start()
+        {
+            
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+            
+        }
+
     }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    static float Quadratic(float x, float a=1, float b=0, float c=0)
-    {
-        return a*x*x + b*x + c;
-    }
-
-
 }
 
